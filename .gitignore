@@ -6,6 +6,7 @@ node_modules
 
 # config files
 config_docker.json
+config_development.json
 
 # ipynb
 *.ipynb_checkpoints
