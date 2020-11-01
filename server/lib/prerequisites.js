@@ -11,10 +11,10 @@ const convert = new Fhir();
 const loadResources = (callback) => {
   let processingError = false;
   const folders = [
-    `${__dirname}/../../resources/StructureDefinition`,
-    `${__dirname}/../../resources/SearchParameter`,
-    `${__dirname}/../../resources/Relationships`,
-    `${__dirname}/../../resources/ResourcesData`,
+    `${__dirname}/resources/StructureDefinition`,
+    `${__dirname}/resources/SearchParameter`,
+    `${__dirname}/resources/Relationships`,
+    `${__dirname}/resources/ResourcesData`,
   ];
   const promises = [];
   const files = [];
