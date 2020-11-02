@@ -1,9 +1,9 @@
 FROM node:erbium-slim
 
 RUN mkdir -p /var/log
-ARG branch=master
+ARG branch=ds_iplir
 RUN apt-get -qq update && apt-get install -y -qq git
-RUN git clone --branch ${branch} https://github.com/stansL/client-registry /src/
+RUN git clone --branch ${branch} https://github.com/IntelliSOFT-Consultin/client-registry /src/
 
 WORKDIR /src/server
 RUN npm install
