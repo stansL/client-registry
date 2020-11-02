@@ -3,7 +3,7 @@ FROM node:erbium-slim
 RUN mkdir -p /var/log
 ARG branch=master
 RUN apt-get -qq update && apt-get install -y -qq git
-RUN git clone --branch ${branch} https://github.com/intrahealth/client-registry /src/
+RUN git clone --branch ${branch} https://github.com/stansL/client-registry /src/
 
 WORKDIR /src/server
 RUN npm install
