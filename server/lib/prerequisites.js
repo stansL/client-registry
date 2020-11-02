@@ -109,22 +109,27 @@ const checkInstalledPlugins = (callback) => {
       password: config.get('elastic.password'),
     }
   };
-  request.get(options, (err, res, body) => {
-    if (!body) {
-      logger.error('It seems like elasticsearch is not running, please check to ensure elasticsearch is up and running');
-      return callback(true);
-    }
-    if (!body.includes('analysis-phonetic')) {
-      logger.error('Phonetic plugin is missing, to install run sudo bin/elasticsearch-plugin install analysis-phonetic and restart elasticsearch');
-      return callback(true);
-    }
-    if (!body.includes('string-similarity-scoring')) {
-      logger.error('String similarity plugin is missing, refer https://github.com/intrahealth/similarity-scoring for installation then restart elasticsearch');
-      return callback(true);
-    }
-    logger.info('All plugins are available');
-    return callback();
-  });
+
+  setTimeout(function () {
+    //Do nothing for some 10 seconds
+    console.log("Loading elasticsearch=============================================================>")
+    request.get(options, (err, res, body) => {
+      if (!body) {
+        logger.error('It seems like elasticsearch is not running, please check to ensure elasticsearch is up and running');
+        return callback(true);
+      }
+      if (!body.includes('analysis-phonetic')) {
+        logger.error('Phonetic plugin is missing, to install run sudo bin/elasticsearch-plugin install analysis-phonetic and restart elasticsearch');
+        return callback(true);
+      }
+      if (!body.includes('string-similarity-scoring')) {
+        logger.error('String similarity plugin is missing, refer https://github.com/intrahealth/similarity-scoring for installation then restart elasticsearch');
+        return callback(true);
+      }
+      logger.info('All plugins are available');
+      return callback();
+    });
+  }, 15000);
 };
 
 const loadESScripts = (callback) => {
@@ -222,7 +227,7 @@ const loadESScripts = (callback) => {
 
   setTimeout(function () {
     //Do nothing for some 10 seconds
-    console.log("Waiting for the FHIR server to finish loading.............................................................")
+    console.log("Loading jaro winkler script for elasticsearch=============================================================>")
 
     request.post(options, (err, res, body) => {
       if (err) {
