@@ -219,9 +219,14 @@ const loadESScripts = (callback) => {
     },
     json: jaroWinkler
   };
+
+  setTimeout(function(){ 
+    //Do nothing for some 10 seconds
+    console.log("Waiting for the FHIR server to finish laoding.............................................................")
+   }, 10000);
   request.post(options, (err, res, body) => {
     if (err) {
-      logger.error('An error has occured while adding pro;babilistic jaro winkler script for elasticsearch');
+      logger.error('An error has occured while adding probabilistic jaro winkler script for elasticsearch');
       return callback(err);
     } else {
       logger.info('Jaro winkler loaded successfully');
