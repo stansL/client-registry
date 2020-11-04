@@ -109,10 +109,9 @@ const checkInstalledPlugins = (callback) => {
       password: config.get('elastic.password'),
     }
   };
-
+  console.log("Loading elasticsearch =============================================================>")
   setTimeout(function () {
     //Do nothing for some 10 seconds
-    console.log("Loading elasticsearch=============================================================>")
     request.get(options, (err, res, body) => {
       if (!body) {
         logger.error('It seems like elasticsearch is not running, please check to ensure elasticsearch is up and running');
@@ -129,7 +128,7 @@ const checkInstalledPlugins = (callback) => {
       logger.info('All plugins are available');
       return callback();
     });
-  }, 15000);
+  }, 30000);
 };
 
 const loadESScripts = (callback) => {
@@ -225,10 +224,9 @@ const loadESScripts = (callback) => {
     json: jaroWinkler
   };
 
+  console.log("Loading jaro winkler script for elasticsearch=============================================================>")
   setTimeout(function () {
     //Do nothing for some 10 seconds
-    console.log("Loading jaro winkler script for elasticsearch=============================================================>")
-
     request.post(options, (err, res, body) => {
       if (err) {
         logger.error('An error has occured while adding probabilistic jaro winkler script for elasticsearch');
@@ -238,7 +236,7 @@ const loadESScripts = (callback) => {
         return callback();
       }
     });
-  }, 15000);
+  }, 30000);
 
 };
 
